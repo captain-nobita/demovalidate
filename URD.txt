@@ -1,0 +1,15 @@
+- Client tạo một lệnh trừ tiền lên máy chủ để rút tiền từ một tài khoản ngân hàng. Cấu trúc bản tin như sau
+
+{
+	"accountNumber": "A123456789",
+	"amount": 50000.00
+}
+
+- Máy chủ kiểm tra format của bản tin với yêu cầu như sau:
+	+ accountNumber: phải là chuỗi ký tự chỉ bao gồm chữ số từ 0 đến 9 và chữ cái từ A đến Z, độ dài từ 8 đến 10 ký tự
+	+ amount: phải là số thập phân có giá trị trong khoảng từ 1000 đến 499999999
+	
+- Nếu format không đúng thì trả về lỗi sai định dạng cho client
+- Nếu đúng format, máy chủ truy vấn số tiền hiện tại của accountNumber đang lưu trữ trong DB vào biến currentAmount
+	+ Nếu amount > currentAmount thì báo lỗi về client
+	+ Nếu amount <= currentAmount thì trả về cho client số tiền là: currentAmount - amount
